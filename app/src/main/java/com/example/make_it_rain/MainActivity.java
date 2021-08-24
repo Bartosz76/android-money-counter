@@ -2,6 +2,7 @@ package com.example.make_it_rain;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.icu.text.NumberFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Button makeItRain;
     private TextView moneyValue;
     private Button showInfo;
+    private int moneyCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
          * That's the FIRST method of introducing an onClick method! I specify it
          * within this class on the variable linked with the widget.
          */
-        makeItRain.setOnClickListener(view -> {
-            /**
-             * I want to log messages.
-             * Log.d stands for Log.Debug
-             */
-            Log.d("MainActivity", "onClick: Make it rain!");
-        });
+//        makeItRain.setOnClickListener(view -> {
+//            /**
+//             * I want to log messages.
+//             * Log.d stands for Log.Debug
+//             */
+//            Log.d("MainActivity", "onClick: Make it rain!");
+//        });
 
 
         /**
@@ -61,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
      * which is the Button in activity_main.xml
      */
     public void showMoney(View view) {
-        Log.d("MainActivity", "onClick: Make it rain!");
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+        moneyCounter += 1000;
+        /**
+         * moneyValue is TextView, so it needs... text. moneyCounter is an int. So it needs
+         * to be a String. NumberFormat is used to keep the number in the format of a currency.
+         */
+        moneyValue.setText(String.valueOf(numberFormat.format(moneyCounter)));
+        Log.d("MainActivity", "onClick: " + moneyCounter);
     }
 }

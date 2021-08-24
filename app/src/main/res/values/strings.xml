@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">make-it-rain</string>
     <string name="you_have">You have:</string>
-    <string name="money_value">$2000</string>
+    <string name="money_value">$0</string>
     <string name="make_it_rain">Make it rain!</string>
     <string name="show_info">Show info</string>
     <string name="test">Gondor.</string>
