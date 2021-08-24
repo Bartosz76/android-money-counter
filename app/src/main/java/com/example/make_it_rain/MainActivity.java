@@ -8,15 +8,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     /**
      * Variables to be used in order to connect to the widgets.
      */
-    private Button makeItRain;
+//    private Button makeItRain;
     private TextView moneyValue;
-    private Button showInfo;
+//    private Button showInfo;
     private int moneyCounter = 0;
 
     @Override
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Connect variables to widgets.
          */
-        makeItRain = findViewById(R.id.buttonMakeItRain);
+//        makeItRain = findViewById(R.id.buttonMakeItRain);
         moneyValue = findViewById(R.id.moneyValue);
 
         /**
@@ -71,5 +72,21 @@ public class MainActivity extends AppCompatActivity {
          */
         moneyValue.setText(String.valueOf(numberFormat.format(moneyCounter)));
         Log.d("MainActivity", "onClick: " + moneyCounter);
+    }
+
+    /**
+     * Toast class -> it's a mechanism that allows for small snippets of information to
+     * appear while the user is using the application. It's an overlay on top of everything else.
+     */
+    public void showInfo(View view) {
+        /**
+         * Context needs to be passed into so that the Toast knows how to show itself inside the
+         * activity.
+         * R.string... is a char sequence, basically a message I want displayed. R.string is used
+         * so it's a reference to a resource kept in string.xml.
+         * The last is the duration of how long the Toast is supposed to be displayed.
+         * .show() needs to be present in order to...show the Toast. Kind of like a builder.
+         */
+        Toast.makeText(MainActivity.this, R.string.app_info, Toast.LENGTH_SHORT).show();
     }
 }
