@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -87,6 +89,20 @@ public class MainActivity extends AppCompatActivity {
          * The last is the duration of how long the Toast is supposed to be displayed.
          * .show() needs to be present in order to...show the Toast. Kind of like a builder.
          */
-        Toast.makeText(MainActivity.this, R.string.app_info, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(MainActivity.this, R.string.app_info, Toast.LENGTH_SHORT).show();
+
+        /**
+         * Snackbar is a "more sophisticated Toast". It delivers more ways to customize the Toast.
+         * Snackbar requires a view (like a button).
+         * Snackbar allows me to add additional functionalities apart from jus .show().
+         * E.g. .setAction() allows me to add another "button" (More) on the message displayed
+         * by the Snackbar itself. In this case - upon clicking on More, a debug log receives
+         * a message!
+         */
+        Snackbar.make(moneyValue, R.string.app_info, Snackbar.LENGTH_LONG)
+                .setAction("More", view1 -> {
+                    Log.d("Snack", "showInfo: Moooore Snackbar");
+                }) 
+                .show();
     }
 }
