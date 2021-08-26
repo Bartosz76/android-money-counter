@@ -1,7 +1,9 @@
 package com.example.make_it_rain;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.icu.text.NumberFormat;
 import android.os.Bundle;
 import android.util.Log;
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     public void showMoney(View view) {
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
         if (moneyCounter == 20000) {
+            moneyValue.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.purple_700));
             showWarning(view);
         } else {
             moneyCounter += 1000;
