@@ -3,7 +3,6 @@ package com.example.make_it_rain;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.icu.text.NumberFormat;
 import android.os.Bundle;
@@ -25,10 +24,26 @@ public class MainActivity extends AppCompatActivity {
     //    private Button showInfo;
     private int moneyCounter = 0;
 
+    private Button newButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+         setContentView(R.layout.activity_main); // What is shown first when the app starts.
+
+        /**
+         * In a new layout I would not be able to reach e.g. moneyValue... because they
+         * are in another activity!
+         */
+//        setContentView(R.layout.another_layout); //<- I can change the layout like that!
+//        newButton = findViewById(R.id.newButton);
+//        newButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.d("New button", "Ohayo goazimasu!");
+//            }
+//        });
+
 
         /**
          * Connect variables to widgets.
