@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.icu.text.NumberFormat;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
      */
 //    private Button makeItRain;
     private TextView moneyValue;
-//    private Button showInfo;
+    //    private Button showInfo;
     private int moneyCounter = 0;
 
     @Override
@@ -66,14 +67,30 @@ public class MainActivity extends AppCompatActivity {
      * Passing View as a parameter means that showMoney() has to pass it internally.
      * Due to that, it's going to be known that it's required to go and fetch the View
      * which is the Button in activity_main.xml
+     * The logic below assigns colours to specifc amounts of money. There are two ways of
+     * assigning the chosen colour.
      */
     public void showMoney(View view) {
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
         if (moneyCounter == 20000) {
             moneyValue.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.purple_700));
             showWarning(view);
+        } else if (String.valueOf(moneyCounter).length() == 5) {
+            if ((Integer.parseInt(String.valueOf(String.valueOf(moneyCounter).charAt(0))) +
+                    Integer.parseInt(String.valueOf(String.valueOf(moneyCounter).charAt(1))))
+                    % 2 == 0 ) {
+                moneyCounter += 1000;
+                moneyValue.setTextColor(Color.YELLOW);
+            } else {
+                moneyCounter += 1000;
+                moneyValue.setTextColor(Color.RED);
+            }
+        } else if (Integer.parseInt(String.valueOf(String.valueOf(moneyCounter).charAt(0))) % 2 == 0) {
+            moneyCounter += 1000;
+            moneyValue.setTextColor(Color.GREEN);
         } else {
             moneyCounter += 1000;
+            moneyValue.setTextColor(Color.BLUE);
         }
         /**
          * moneyValue is TextView, so it needs... text. moneyCounter is an int. So it needs
@@ -109,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         Snackbar.make(moneyValue, R.string.app_info, Snackbar.LENGTH_LONG)
                 .setAction("More", view1 -> {
                     Log.d("Snack", "showInfo: Moooore Snackbar");
-                }) 
+                })
                 .show();
     }
 
