@@ -62,12 +62,16 @@ public class MainActivity extends AppCompatActivity {
      * View -> without passing the View, Android wouldn't know where this button is
      * in the hierarchy. Everything in Android inherits from View class.
      * Passing View as a parameter means that showMoney() has to pass it internally.
-     * Due to that it's going to be know that it's required to go and fetch the View
+     * Due to that, it's going to be known that it's required to go and fetch the View
      * which is the Button in activity_main.xml
      */
     public void showMoney(View view) {
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
-        moneyCounter += 1000;
+        if (moneyCounter == 20000) {
+            showWarning(view);
+        } else {
+            moneyCounter += 1000;
+        }
         /**
          * moneyValue is TextView, so it needs... text. moneyCounter is an int. So it needs
          * to be a String. NumberFormat is used to keep the number in the format of a currency.
@@ -94,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Snackbar is a "more sophisticated Toast". It delivers more ways to customize the Toast.
          * Snackbar requires a view (like a button).
-         * Snackbar allows me to add additional functionalities apart from jus .show().
+         * Snackbar allows me to add additional functionalities apart from just .show().
          * E.g. .setAction() allows me to add another "button" (More) on the message displayed
          * by the Snackbar itself. In this case - upon clicking on More, a debug log receives
          * a message!
@@ -104,5 +108,9 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("Snack", "showInfo: Moooore Snackbar");
                 }) 
                 .show();
+    }
+
+    public void showWarning(View view) {
+        Toast.makeText(MainActivity.this, R.string.app_warning, Toast.LENGTH_SHORT).show();
     }
 }
